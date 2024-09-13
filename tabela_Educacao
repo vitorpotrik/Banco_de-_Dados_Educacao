@@ -1,0 +1,39 @@
+-- Tabela Alunos
+CREATE TABLE Alunos (
+    id_aluno SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    idade INTEGER,
+    sexo VARCHAR(10),
+    origem VARCHAR(50)
+);
+
+-- Tabela Sessoes
+CREATE TABLE Sessoes (
+    id_sessao SERIAL PRIMARY KEY,
+    data DATE NOT NULL,
+    conteudo TEXT
+);
+
+-- Tabela Participacao
+CREATE TABLE Participacao (
+    id_participacao SERIAL PRIMARY KEY,
+    id_aluno INTEGER REFERENCES Alunos(id_aluno),
+    id_sessao INTEGER REFERENCES Sessoes(id_sessao),
+    presente BOOLEAN NOT NULL
+);
+
+-- Tabela Projetos
+CREATE TABLE Projetos (
+    id_projeto SERIAL PRIMARY KEY,
+    id_aluno INTEGER REFERENCES Alunos(id_aluno),
+    descricao TEXT NOT NULL,
+    data_submissao DATE NOT NULL
+);
+
+-- Tabela Feedbacks
+CREATE TABLE Feedbacks (
+    id_feedback SERIAL PRIMARY KEY,
+    id_aluno INTEGER REFERENCES Alunos(id_aluno),
+    comentario TEXT NOT NULL,
+    data_feedback DATE NOT NULL
+);
